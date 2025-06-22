@@ -17,7 +17,8 @@ class Job(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     company = db.Column(db.String(100), nullable=False)
     role = db.Column(db.String(100), nullable=False)
-with app.app_context():
+@app.before_first_request
+def create_tables():
     db.create_all()
 @app.route('/api/jobs', methods=['POST'])
 def add_job():
