@@ -1,5 +1,6 @@
 from app import app
 
+
 if __name__ == '__main__':
     import os
     port = int(os.environ.get("PORT", 5000))
@@ -16,7 +17,8 @@ class Job(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     company = db.Column(db.String(100), nullable=False)
     role = db.Column(db.String(100), nullable=False)
-
+with app.app_context():
+    db.create_all()
 @app.route('/api/jobs', methods=['POST'])
 def add_job():
     data = request.get_json()
