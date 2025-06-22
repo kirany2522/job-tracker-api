@@ -1,10 +1,13 @@
 from flask import Flask
+import os
 
 app = Flask(__name__)
 
 @app.route('/')
-def home():
-    return "Hello, this is my Flask project on Render!"
+def hello():
+    return "Hello from Flask app on Render 🚀"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Default for local
+    app.run(host="0.0.0.0", port=port)
+
